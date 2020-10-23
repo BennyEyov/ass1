@@ -7,7 +7,6 @@
 #include "anomaly_detection_util.h"
 #include <math.h>
 
-
 float avg(float *x, int size, bool flag = false) {
   float sum = 0;
   for (int i = 0; i < size; i++) {
@@ -20,14 +19,6 @@ float avg(float *x, int size, bool flag = false) {
   return sum / size;
 }
 
-float *arrayMult(float *x, float *y, int size) {
-  float multArray[size];
-  for (int i = 0; i < size; i++) {
-    multArray[i] = x[i] * y[i];
-  }
-  return multArray;
-}
-
 // returns the variance of X and Y
 float var(float *x, int size) {
   return avg(x, size, true) - pow(avg(x, size, false), 2);
@@ -35,7 +26,11 @@ float var(float *x, int size) {
 
 // returns the covariance of X and Y
 float cov(float *x, float *y, int size) {
-  return avg(arrayMult(x, y, size), size, false) -
+  float multArray[size];
+  for (int i = 0; i < size; i++) {
+    multArray[i] = x[i] * y[i];
+  }
+  return avg(multArray, size, false) -
          (avg(x, size, false) * avg(y, size, false));
 }
 
