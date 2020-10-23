@@ -58,4 +58,10 @@ float dev(Point p, Point **points, int size) {
 }
 
 // returns the deviation between point p and the line
-float dev(Point p, Line l) { return abs(p.y - l.f(p.x)); }
+float dev(Point p, Line l) {
+  float devOut = p.y - l.f(p.x);
+  if (devOut < 0) {
+    return -devOut;
+  }
+  return devOut;
+}
