@@ -30,3 +30,9 @@
 *.exe
 *.out
 *.app
+
+# vscode not necessary for now
+.vscode
+
+# build not necessary
+build/
